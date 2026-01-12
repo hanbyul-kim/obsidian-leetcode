@@ -83,26 +83,6 @@ status: "todo"
 - Time Complexity:
 - Space Complexity:
 
-### Code
-
-#### Python3
-
-```python
-class Solution:
-    def twoSum(self, nums: List[int], target: int) -> List[int]:
-
-```
-
-#### Java
-
-```java
-class Solution {
-    public int[] twoSum(int[] nums, int target) {
-
-    }
-}
-```
-
 ## Notes
 
 <!-- Add your notes here -->
