@@ -5,8 +5,8 @@ Obsidian에서 LeetCode 문제를 쉽게 가져오고 정리할 수 있는 플�
 ## 주요 기능
 
 - 🔗 **URL 입력으로 간편한 임포트**: LeetCode 문제 URL만 입력하면 자동으로 파싱
-- 📝 **Frontmatter 메타데이터**: 문제 번호, 난이도, 태그, 승인률 등을 frontmatter에 자동 저장
-- 💻 **다중 언어 코드 템플릿**: Python, Java, C++, JavaScript, TypeScript 등 주요 언어의 코드 템플릿 포함
+- 📝 **Frontmatter 메타데이터**: 문제 번호, 난이도, 태그, 승인률, 소요 시간, 시도 횟수 등을 frontmatter에 자동 저장
+- 💻 **Python 코드 템플릿**: Python 코드 템플릿 자동 포함
 - 📂 **자동 폴더 정리**: 설정한 폴더에 자동으로 문제 노트 생성
 - 🎨 **마크다운 변환**: HTML 형식의 문제 설명을 읽기 쉬운 마크다운으로 자동 변환
 
@@ -54,15 +54,11 @@ acceptance_rate: 49.50%
 url: "https://leetcode.com/problems/two-sum/"
 date_created: 2026-01-12
 status: "todo"
+time_taken: ""
+num_tries: 0
 ---
 
 # 1. Two Sum
-
-> [!info] Problem Information
-> - **Difficulty:** Easy
-> - **Tags:** Array, Hash Table
-> - **Acceptance Rate:** 49.50%
-> - **Link:** [LeetCode](https://leetcode.com/problems/two-sum/)
 
 ## Problem Description
 
@@ -82,6 +78,14 @@ status: "todo"
 
 - Time Complexity:
 - Space Complexity:
+
+### Code
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+
+```
 
 ## Notes
 
@@ -110,6 +114,8 @@ status: "todo"
 | `url` | LeetCode 문제 링크 | https://leetcode.com/... |
 | `date_created` | 생성 날짜 | 2026-01-12 |
 | `status` | 문제 상태 | todo, in-progress, completed |
+| `time_taken` | 소요 시간 | "30min", "" |
+| `num_tries` | 시도 횟수 | 0, 1, 2, ... |
 
 ## Dataview 활용 예시
 
