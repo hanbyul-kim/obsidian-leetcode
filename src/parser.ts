@@ -206,6 +206,9 @@ export class LeetCodeParser {
             `url: "${url}"`,
             `date_created: ${new Date().toISOString().split('T')[0]}`,
             `status: "todo"`,
+            `done: false`,
+            `time_taken_min: 0`,
+            `num_tries: 0`,
             '---',
             ''
         ].join('\n');
@@ -214,12 +217,6 @@ export class LeetCodeParser {
 
         const sections = [
             `# ${problem.questionFrontendId}. ${problem.title}`,
-            '',
-            `> [!info] Problem Information`,
-            `> - **Difficulty:** ${problem.difficulty}`,
-            `> - **Tags:** ${problem.topicTags.join(', ')}`,
-            `> - **Acceptance Rate:** ${problem.acRate.toFixed(2)}%`,
-            `> - **Link:** [LeetCode](${url})`,
             '',
             '## Problem Description',
             '',
@@ -252,32 +249,14 @@ export class LeetCodeParser {
         sections.push('### Code');
         sections.push('');
 
-        // Add code snippets for popular languages
-        const popularLangs = ['python3', 'java', 'cpp', 'javascript', 'typescript'];
-        problem.codeSnippets
-            .filter(snippet => popularLangs.includes(snippet.langSlug))
-            .forEach(snippet => {
-                let langName = snippet.lang;
-                let codeBlockLang = snippet.langSlug;
-
-                // Map langSlug to proper markdown code block language
-                const langMap: { [key: string]: string } = {
-                    'python3': 'python',
-                    'cpp': 'cpp',
-                    'java': 'java',
-                    'javascript': 'javascript',
-                    'typescript': 'typescript'
-                };
-
-                codeBlockLang = langMap[snippet.langSlug] || snippet.langSlug;
-
-                sections.push(`#### ${langName}`);
-                sections.push('');
-                sections.push('```' + codeBlockLang);
-                sections.push(snippet.code);
-                sections.push('```');
-                sections.push('');
-            });
+        // Add Python code snippet
+        const pythonSnippet = problem.codeSnippets.find(snippet => snippet.langSlug === 'python3');
+        if (pythonSnippet) {
+            sections.push('```python');
+            sections.push(pythonSnippet.code);
+            sections.push('```');
+            sections.push('');
+        }
 
         sections.push('## Notes');
         sections.push('');
