@@ -206,7 +206,8 @@ export class LeetCodeParser {
             `url: "${url}"`,
             `date_created: ${new Date().toISOString().split('T')[0]}`,
             `status: "todo"`,
-            `time_taken: ""`,
+            `done: false`,
+            `time_taken_min: 0`,
             `num_tries: 0`,
             '---',
             ''
