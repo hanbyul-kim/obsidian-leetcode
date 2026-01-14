@@ -205,7 +205,6 @@ export class LeetCodeParser {
             `acceptance_rate: ${problem.acRate.toFixed(2)}%`,
             `url: "${url}"`,
             `date_created: ${new Date().toISOString().split('T')[0]}`,
-            `status: "todo"`,
             `done: false`,
             `time_taken_min: 0`,
             `num_tries: 0`,
