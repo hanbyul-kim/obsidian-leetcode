@@ -208,6 +208,7 @@ export class LeetCodeParser {
             `done: false`,
             `time_taken_min: 0`,
             `num_tries: 0`,
+            `wrong_reason: ""`,
             '---',
             ''
         ].join('\n');
