@@ -1,40 +1,40 @@
 # Obsidian LeetCode Importer Plugin
 
-Obsidian에서 LeetCode 문제를 쉽게 가져오고 정리할 수 있는 플러그인입니다. LeetCode URL을 입력하면 문제 정보를 파싱하여 frontmatter가 포함된 마크다운 노트로 자동 생성합니다.
+An Obsidian plugin that lets you easily import and organize LeetCode problems. Simply enter a LeetCode URL and the plugin will parse the problem information and automatically generate a markdown note with frontmatter metadata.
 
-## 주요 기능
+## Features
 
-- 🔗 **URL 입력으로 간편한 임포트**: LeetCode 문제 URL만 입력하면 자동으로 파싱
-- 📝 **Frontmatter 메타데이터**: 문제 번호, 난이도, 태그, 승인률, 완료 여부, 소요 시간, 시도 횟수 등을 frontmatter에 자동 저장
-- 💻 **Python 코드 템플릿**: Python 코드 템플릿 자동 포함
-- 📂 **자동 폴더 정리**: 설정한 폴더에 자동으로 문제 노트 생성
-- 🎨 **마크다운 변환**: HTML 형식의 문제 설명을 읽기 쉬운 마크다운으로 자동 변환
+- 🔗 **Easy Import via URL**: Just paste a LeetCode problem URL to automatically parse it
+- 📝 **Frontmatter Metadata**: Automatically saves problem number, difficulty, tags, acceptance rate, completion status, time taken, number of attempts, and more in frontmatter
+- 💻 **Python Code Template**: Automatically includes a Python code template
+- 📂 **Automatic Folder Organization**: Creates problem notes in your configured folder
+- 🎨 **Markdown Conversion**: Automatically converts HTML problem descriptions into readable markdown
 
-## 설치 방법
+## Installation
 
-### 수동 설치
+### Manual Installation
 
-1. 이 저장소를 클론하거나 다운로드합니다
-2. `npm install` 실행
-3. `npm run build` 실행
-4. `main.js`, `manifest.json`, `styles.css` 파일을 Obsidian vault의 `.obsidian/plugins/obsidian-leetcode/` 폴더에 복사
+1. Clone or download this repository
+2. Run `npm install`
+3. Run `npm run build`
+4. Copy `main.js`, `manifest.json`, and `styles.css` into your Obsidian vault's `.obsidian/plugins/obsidian-leetcode/` folder
 
-## 사용 방법
+## Usage
 
-### 1. 리본 아이콘 사용
+### 1. Using the Ribbon Icon
 
-- 좌측 리본 메뉴에서 코드 아이콘 클릭
-- LeetCode URL 입력
-- "Import" 버튼 클릭
+- Click the code icon in the left ribbon menu
+- Enter the LeetCode URL
+- Click the "Import" button
 
-### 2. 명령 팔레트 사용
+### 2. Using the Command Palette
 
-1. `Ctrl/Cmd + P`로 명령 팔레트 열기
-2. "Import LeetCode Problem" 검색
-3. LeetCode URL 입력
-4. Enter 또는 "Import" 버튼 클릭
+1. Open the command palette with `Ctrl/Cmd + P`
+2. Search for "Import LeetCode Problem"
+3. Enter the LeetCode URL
+4. Press Enter or click the "Import" button
 
-### 3. 지원하는 URL 형식
+### 3. Supported URL Formats
 
 ```
 https://leetcode.com/problems/two-sum/
@@ -42,7 +42,7 @@ https://leetcode.com/problems/two-sum/description/
 https://leetcode.com/problems/add-two-numbers/
 ```
 
-## 생성되는 노트 구조
+## Generated Note Structure
 
 ```markdown
 ---
@@ -63,11 +63,11 @@ num_tries: 0
 
 ## Problem Description
 
-[문제 설명이 마크다운 형식으로 표시됩니다]
+[Problem description displayed in markdown format]
 
 ## Hints
 
-[힌트가 있는 경우 표시됩니다]
+[Hints are displayed if available]
 
 ## Solution
 
@@ -93,37 +93,37 @@ class Solution:
 <!-- Add your notes here -->
 ```
 
-## 설정
+## Settings
 
-플러그인 설정 탭에서 다음을 설정할 수 있습니다:
+You can configure the following options in the plugin settings tab:
 
-- **Folder Path**: LeetCode 문제가 저장될 폴더 (기본값: `LeetCode`)
-- **Include Hints**: 힌트를 노트에 포함할지 여부 (기본값: 활성화)
-- **Default Status**: 새 문제의 기본 상태 (기본값: `todo`)
+- **Folder Path**: The folder where LeetCode problems will be saved (default: `LeetCode`)
+- **Include Hints**: Whether to include hints in the note (default: enabled)
+- **Default Status**: The default status for new problems (default: `todo`)
 
-## Frontmatter 필드
+## Frontmatter Fields
 
-생성된 노트의 frontmatter에는 다음 필드가 포함됩니다:
+The generated note's frontmatter includes the following fields:
 
-| 필드 | 설명 | 예시 |
-|------|------|------|
-| `title` | 문제 제목 | "Two Sum" |
-| `leetcode_id` | 문제 번호 | 1 |
-| `difficulty` | 난이도 | Easy, Medium, Hard |
-| `tags` | 문제 태그 | ["Array", "Hash Table"] |
-| `acceptance_rate` | 승인률 | 49.50% |
-| `url` | LeetCode 문제 링크 | https://leetcode.com/... |
-| `date_created` | 생성 날짜 | 2026-01-12 |
-| `status` | 문제 상태 | todo, in-progress, completed |
-| `done` | 완료 여부 | false, true |
-| `time_taken_min` | 소요 시간 (분) | 0, 30, 45, ... |
-| `num_tries` | 시도 횟수 | 0, 1, 2, ... |
+| Field | Description | Example |
+|-------|-------------|---------|
+| `title` | Problem title | "Two Sum" |
+| `leetcode_id` | Problem number | 1 |
+| `difficulty` | Difficulty level | Easy, Medium, Hard |
+| `tags` | Problem tags | ["Array", "Hash Table"] |
+| `acceptance_rate` | Acceptance rate | 49.50% |
+| `url` | LeetCode problem link | https://leetcode.com/... |
+| `date_created` | Date created | 2026-01-12 |
+| `status` | Problem status | todo, in-progress, completed |
+| `done` | Completion status | false, true |
+| `time_taken_min` | Time taken (minutes) | 0, 30, 45, ... |
+| `num_tries` | Number of attempts | 0, 1, 2, ... |
 
-## Dataview 활용 예시
+## Dataview Examples
 
-Dataview 플러그인과 함께 사용하면 LeetCode 문제를 효과적으로 관리할 수 있습니다:
+You can effectively manage your LeetCode problems by using the Dataview plugin:
 
-### 난이도별 문제 목록
+### Problems by Difficulty
 
 ```dataview
 TABLE difficulty, tags, acceptance_rate
@@ -131,7 +131,7 @@ FROM "LeetCode"
 SORT difficulty ASC, leetcode_id ASC
 ```
 
-### 미완료 문제 목록
+### Incomplete Problems
 
 ```dataview
 TABLE leetcode_id, title, difficulty
@@ -140,7 +140,7 @@ WHERE status = "todo"
 SORT difficulty ASC
 ```
 
-### 태그별 문제 통계
+### Problem Statistics by Tag
 
 ```dataview
 TABLE length(rows) as Count
@@ -150,46 +150,46 @@ GROUP BY tags
 SORT Count DESC
 ```
 
-## 개발
+## Development
 
-### 빌드
+### Build
 
 ```bash
 npm install
 npm run build
 ```
 
-### 개발 모드
+### Development Mode
 
 ```bash
 npm run dev
 ```
 
-## 기술 스택
+## Tech Stack
 
 - TypeScript
 - Obsidian API
 - LeetCode GraphQL API
 
-## 라이선스
+## License
 
 0-BSD License
 
-## 기여
+## Contributing
 
-이슈나 풀 리퀘스트는 언제나 환영합니다!
+Issues and pull requests are always welcome!
 
-## 알려진 제한사항
+## Known Limitations
 
-- LeetCode의 GraphQL API를 사용하므로 네트워크 연결이 필요합니다
-- 일부 프리미엄 문제는 가져올 수 없을 수 있습니다
-- HTML to Markdown 변환이 완벽하지 않을 수 있습니다
+- Requires a network connection as it uses the LeetCode GraphQL API
+- Some premium problems may not be importable
+- HTML to Markdown conversion may not be perfect in all cases
 
-## 로드맵
+## Roadmap
 
-- [ ] 프리미엄 문제 지원
-- [ ] 문제 검색 기능
-- [ ] 태그별 필터링
-- [ ] Daily Challenge 자동 가져오기
-- [ ] 제출 내역 관리
-- [ ] 진행률 대시보드
+- [ ] Premium problem support
+- [ ] Problem search functionality
+- [ ] Tag-based filtering
+- [ ] Automatic Daily Challenge import
+- [ ] Submission history management
+- [ ] Progress dashboard
