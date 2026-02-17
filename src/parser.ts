@@ -23,6 +23,33 @@ export interface CodeSnippet {
     code: string;
 }
 
+interface TopicTag {
+    name: string;
+    slug: string;
+}
+
+interface GraphQLQuestion {
+    questionId: string;
+    questionFrontendId: string;
+    title: string;
+    titleSlug: string;
+    content: string;
+    difficulty: string;
+    exampleTestcases: string;
+    topicTags: TopicTag[];
+    codeSnippets: CodeSnippet[];
+    stats: string;
+    hints: string[];
+    similarQuestions: string;
+}
+
+interface GraphQLResponse {
+    data?: {
+        question?: GraphQLQuestion;
+    };
+    errors?: { message: string }[];
+}
+
 export class LeetCodeParser {
     private readonly GRAPHQL_ENDPOINT = 'https://leetcode.com/graphql';
 
@@ -35,9 +62,9 @@ export class LeetCodeParser {
     extractSlugFromUrl(url: string): string | null {
         try {
             const urlObj = new URL(url);
-            const match = urlObj.pathname.match(/\/problems\/([^\/]+)/);
+            const match = urlObj.pathname.match(/\/problems\/([^/]+)/);
             return match && match[1] ? match[1] : null;
-        } catch (e) {
+        } catch {
             return null;
         }
     }
@@ -88,12 +115,12 @@ export class LeetCodeParser {
             throw new Error(`Failed to fetch problem: ${response.status}`);
         }
 
-        const data = response.json;
+        const data = response.json as GraphQLResponse;
         if (data.errors) {
             throw new Error(`GraphQL error: ${JSON.stringify(data.errors)}`);
         }
 
-        if (!data.data || !data.data.question) {
+        if (!data.data?.question) {
             throw new Error('Problem not found');
         }
 
@@ -102,9 +129,9 @@ export class LeetCodeParser {
         // Parse stats to get acceptance rate
         let acRate = 0;
         try {
-            const stats = JSON.parse(question.stats);
+            const stats = JSON.parse(question.stats) as { acRate: string };
             acRate = parseFloat(stats.acRate) || 0;
-        } catch (e) {
+        } catch {
             // Ignore parse errors
         }
 
@@ -115,7 +142,7 @@ export class LeetCodeParser {
             titleSlug: question.titleSlug,
             difficulty: question.difficulty,
             content: question.content || '',
-            topicTags: question.topicTags.map((tag: any) => tag.name),
+            topicTags: question.topicTags.map((tag: TopicTag) => tag.name),
             codeSnippets: question.codeSnippets,
             stats: question.stats,
             hints: question.hints || [],
@@ -133,7 +160,7 @@ export class LeetCodeParser {
     private escapeBrackets(text: string): string {
         return text.replace(
             /(```[\s\S]*?```|`[^`]*`|\[[^\]]*\]\([^)]*\))|(\[)|(\])/g,
-            (match, preserved, openBracket, closeBracket) => {
+            (match: string, preserved: string | undefined, openBracket: string | undefined, closeBracket: string | undefined): string => {
                 if (preserved) return preserved;
                 if (openBracket) return '\\[';
                 if (closeBracket) return '\\]';
@@ -167,7 +194,7 @@ export class LeetCodeParser {
         markdown = markdown.replace(/<code[^>]*>(.*?)<\/code>/gi, '`$1`');
 
         // Convert pre blocks
-        markdown = markdown.replace(/<pre[^>]*>([\s\S]*?)<\/pre>/gi, (match, code) => {
+        markdown = markdown.replace(/<pre[^>]*>([\s\S]*?)<\/pre>/gi, (_match: string, code: string) => {
             return '\n```\n' + code.replace(/<[^>]+>/g, '') + '\n```\n';
         });
 

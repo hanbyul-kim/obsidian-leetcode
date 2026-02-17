@@ -26,12 +26,15 @@ export class LeetCodeSettingTab extends PluginSettingTab {
 
 		containerEl.empty();
 
-		containerEl.createEl('h2', { text: 'LeetCode Plugin Settings' });
+		// eslint-disable-next-line obsidianmd/ui/sentence-case
+		new Setting(containerEl).setName('LeetCode plugin').setHeading();
 
 		new Setting(containerEl)
-			.setName('Folder Path')
+			.setName('Folder path')
+			// eslint-disable-next-line obsidianmd/ui/sentence-case
 			.setDesc('The folder where LeetCode problems will be saved (default: LeetCode)')
 			.addText(text => text
+				// eslint-disable-next-line obsidianmd/ui/sentence-case
 				.setPlaceholder('LeetCode')
 				.setValue(this.plugin.settings.folderPath)
 				.onChange(async (value) => {
@@ -40,7 +43,7 @@ export class LeetCodeSettingTab extends PluginSettingTab {
 				}));
 
 		new Setting(containerEl)
-			.setName('Include Hints')
+			.setName('Include hints')
 			.setDesc('Include hints in the generated notes')
 			.addToggle(toggle => toggle
 				.setValue(this.plugin.settings.includeHints)
@@ -50,10 +53,10 @@ export class LeetCodeSettingTab extends PluginSettingTab {
 				}));
 
 		new Setting(containerEl)
-			.setName('Default Status')
+			.setName('Default status')
 			.setDesc('Default status for new problems (e.g., todo, in-progress, completed)')
 			.addText(text => text
-				.setPlaceholder('todo')
+				.setPlaceholder('Todo')
 				.setValue(this.plugin.settings.defaultStatus)
 				.onChange(async (value) => {
 					this.plugin.settings.defaultStatus = value || 'todo';
