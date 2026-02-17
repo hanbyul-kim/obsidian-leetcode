@@ -127,6 +127,22 @@ export class LeetCodeParser {
     }
 
     /**
+     * Escape square brackets to prevent Obsidian from interpreting them as internal links.
+     * Preserves brackets inside code blocks, inline code, and markdown links.
+     */
+    private escapeBrackets(text: string): string {
+        return text.replace(
+            /(```[\s\S]*?```|`[^`]*`|\[[^\]]*\]\([^)]*\))|(\[)|(\])/g,
+            (match, preserved, openBracket, closeBracket) => {
+                if (preserved) return preserved;
+                if (openBracket) return '\\[';
+                if (closeBracket) return '\\]';
+                return match;
+            }
+        );
+    }
+
+    /**
      * Convert HTML content to Markdown (basic conversion)
      */
     htmlToMarkdown(html: string): string {
@@ -189,6 +205,9 @@ export class LeetCodeParser {
         // Clean up multiple newlines
         markdown = markdown.replace(/\n{3,}/g, '\n\n');
 
+        // Escape brackets to prevent Obsidian wiki-link interpretation
+        markdown = this.escapeBrackets(markdown);
+
         return markdown.trim();
     }
 
@@ -230,7 +249,7 @@ export class LeetCodeParser {
             sections.push('## Hints');
             sections.push('');
             problem.hints.forEach((hint, index) => {
-                sections.push(`${index + 1}. ${hint}`);
+                sections.push(`${index + 1}. ${this.escapeBrackets(hint)}`);
             });
             sections.push('');
         }
