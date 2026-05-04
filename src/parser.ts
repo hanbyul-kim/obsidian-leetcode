@@ -220,7 +220,7 @@ export class LeetCodeParser {
             `title: "${problem.title}"`,
             `leetcode_id: ${problem.questionFrontendId}`,
             `difficulty: ${problem.difficulty}`,
-            `tags: [${problem.topicTags.map(tag => `"${tag}"`).join(', ')}]`,
+            `tags: [${problem.topicTags.map(tag => `"${tag.replace(/\s+/g, '_')}"`).join(', ')}]`,
             `acceptance_rate: ${problem.acRate.toFixed(2)}%`,
             `url: "${url}"`,
             `date_created: ${new Date().toISOString().split('T')[0]}`,
