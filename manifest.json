@@ -4,7 +4,7 @@
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Import LeetCode problems as notes with frontmatter metadata. Parse problem details, code templates, and organize your LeetCode solutions in Obsidian.",
-	"author": "LeetCode Plugin",
-	"authorUrl": "https://github.com",
+	"author": "hanbyul-kim",
+	"authorUrl": "https://github.com/hanbyul-kim",
 	"isDesktopOnly": false
 }

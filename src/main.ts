@@ -1,4 +1,4 @@
-import { Notice, Plugin, TFile, TFolder } from 'obsidian';
+import { Notice, Plugin } from 'obsidian';
 import { DEFAULT_SETTINGS, LeetCodePluginSettings, LeetCodeSettingTab } from "./settings";
 import { LeetCodeModal } from "./modal";
 
@@ -9,14 +9,16 @@ export default class LeetCodePlugin extends Plugin {
 		await this.loadSettings();
 
 		// Add ribbon icon for quick access
-		this.addRibbonIcon('code', 'Import LeetCode Problem', () => {
+		// eslint-disable-next-line obsidianmd/ui/sentence-case
+		this.addRibbonIcon('code', 'Import LeetCode problem', () => {
 			this.openImportModal();
 		});
 
 		// Add command to import LeetCode problem
 		this.addCommand({
 			id: 'import-leetcode-problem',
-			name: 'Import LeetCode Problem',
+			// eslint-disable-next-line obsidianmd/ui/sentence-case
+			name: 'Import LeetCode problem',
 			callback: () => {
 				this.openImportModal();
 			}
@@ -42,8 +44,8 @@ export default class LeetCodePlugin extends Plugin {
 		new LeetCodeModal(
 			this.app,
 			this.settings.folderPath,
-			async (content: string, filename: string) => {
-				await this.createNote(content, filename);
+			(content: string, filename: string) => {
+				void this.createNote(content, filename);
 			}
 		).open();
 	}

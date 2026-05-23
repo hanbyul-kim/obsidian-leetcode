@@ -1,4 +1,4 @@
-import { App, Modal, Notice, Setting, TFolder } from 'obsidian';
+import { App, Modal, Notice, Setting } from 'obsidian';
 import { LeetCodeParser } from './parser';
 
 export class LeetCodeModal extends Modal {
@@ -21,9 +21,11 @@ export class LeetCodeModal extends Modal {
     onOpen() {
         const { contentEl } = this;
 
-        contentEl.createEl('h2', { text: 'Import LeetCode Problem' });
+        // eslint-disable-next-line obsidianmd/ui/sentence-case
+        contentEl.createEl('h2', { text: 'Import LeetCode problem' });
 
         new Setting(contentEl)
+            // eslint-disable-next-line obsidianmd/ui/sentence-case
             .setName('LeetCode URL')
             .setDesc('Enter the LeetCode problem URL (e.g., https://leetcode.com/problems/two-sum/)')
             .addText(text => text
@@ -35,7 +37,7 @@ export class LeetCodeModal extends Modal {
                 .inputEl.addEventListener('keydown', (e: KeyboardEvent) => {
                     if (e.key === 'Enter') {
                         e.preventDefault();
-                        this.importProblem();
+                        void this.importProblem();
                     }
                 })
             );
@@ -50,7 +52,7 @@ export class LeetCodeModal extends Modal {
                 .setButtonText('Import')
                 .setCta()
                 .onClick(() => {
-                    this.importProblem();
+                    void this.importProblem();
                 }));
     }
 
@@ -61,6 +63,7 @@ export class LeetCodeModal extends Modal {
 
     private async importProblem() {
         if (!this.url) {
+            // eslint-disable-next-line obsidianmd/ui/sentence-case
             new Notice('Please enter a LeetCode URL');
             return;
         }
@@ -68,11 +71,13 @@ export class LeetCodeModal extends Modal {
         // Extract problem slug from URL
         const slug = this.parser.extractSlugFromUrl(this.url);
         if (!slug) {
+            // eslint-disable-next-line obsidianmd/ui/sentence-case
             new Notice('Invalid LeetCode URL');
             return;
         }
 
         // Show loading notice
+        // eslint-disable-next-line obsidianmd/ui/sentence-case
         const loadingNotice = new Notice('Fetching problem from LeetCode...', 0);
 
         try {
